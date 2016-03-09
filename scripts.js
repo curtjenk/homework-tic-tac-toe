@@ -5,6 +5,7 @@
 //ULTRA BONUS
 // Make the computer try and win.
 
+var playMode = 0;
 var winners = 
 [
 	['a1','a2','a3'],
@@ -21,7 +22,17 @@ var playerTwoMarkings = [];
 var whosTurn = 1;
 var gameHeader = document.getElementById('game-header')
 
+function setPlayMode(mode) {
+	playMode = mode;
+	document.getElementById('player-choice').style.display = "none";
+	gameHeader.innerHTML = "It is Player 1's turn";
+}
 function addSymbol(element){
+	if (playMode === 0)
+	{
+		gameHeader.innerHTML = "Please select 1 or 2 Player mode";
+		return;
+	}
 	if(element.innerHTML == ''){
 		//Put a symbol in... X or O?
 		if(whosTurn == 1){
@@ -38,16 +49,19 @@ function addSymbol(element){
 
 			//Only run computersTurn, if the user chose 1 player
 			//Otherwise run computers turn.
-			computersTurn();
-		// }else{
-		// 	//It has to be O's turn. Put an O in.
-		// 	element.innerHTML = 'O';
-		// 	whosTurn = 1;
-		// 	gameHeader.innerHTML = "It is Player 1's turn";
-		// 	gameHeader.className = 'player-one';
-		// 	element.classList.remove('empty');
-		// 	element.classList.add('p2');
-		// 	playerTwoMarkings.push(element.id);
+			if (playMode === 1)
+			{
+				computersTurn();
+			}
+		 }else{
+			//It has to be O's turn. Put an O in.
+			element.innerHTML = 'O';
+			whosTurn = 1;
+			gameHeader.innerHTML = "It is Player 1's turn";
+			gameHeader.className = 'player-one';
+			element.classList.remove('empty');
+			element.classList.add('p2');
+			playerTwoMarkings.push(element.id);
 		}
 	}else{
 		gameHeader.innerHTML = "This box is taken";
@@ -134,4 +148,3 @@ var squares = document.getElementsByClassName('square');
 for(i=0; i<squares.length; i++){
 	squares[i].style.height = squareWidth + 'px';
 }
-

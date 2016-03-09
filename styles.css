@@ -2,6 +2,20 @@
 	padding: 30px;
 }
 
+#player-choice{
+	text-align: center;
+	margin: 0 auto 15px;
+}
+
+#player-choice button {
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	border-radius: 40%;
+	border: none;
+	margin: 0px 10px;
+}
+
 #board-wrapper{
 	background-color: black;
 	width: 75%;
