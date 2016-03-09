@@ -11,13 +11,16 @@
 
 	<div id="game-wrapper">
 		<div id="player-choice">
-				<button onclick="setPlayMode(1);">1 Player</button>
-				<button onclick="setPlayMode(2);">2 Player</button>
-			</div>
+				<button id="one" onclick="setPlayMode(1);">1 Player</button>
+				<button id="two" onclick="setPlayMode(2);">2 Player</button>
+		</div>
+		<div id="reset">
+			<button onclick="resetGame()">Play Again?</button>
+		</div>
 		<div id="game-header">
 			Please select 1 or 2 Player mode
 		</div>
-
+      
 		<div id="board-wrapper">
 			<div id="row1">
 				<button class="left square empty" id="a1" onclick="addSymbol(this);"></button>

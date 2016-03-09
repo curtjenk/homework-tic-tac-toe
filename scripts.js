@@ -21,6 +21,13 @@ var playerOneMarkings = [];
 var playerTwoMarkings = [];
 var whosTurn = 1;
 var gameHeader = document.getElementById('game-header')
+//------------ set the square height
+var squareWidth = document.getElementById('a1').clientWidth;
+var squares = document.getElementsByClassName('square');
+for(i=0; i<squares.length; i++){
+	squares[i].style.height = squareWidth + 'px';
+}
+
 
 function setPlayMode(mode) {
 	playMode = mode;
@@ -126,7 +133,8 @@ function gameOver(combo, playerWhoWon){
 	}
 	gameHeader.innerHTML = 'Player ' + playerWhoWon + ' , won the game!';
 
-	var buttons = document.getElementsByTagName("button");
+	//var buttons = document.getElementsByTagName("button");
+	var buttons = document.getElementsByClassName("square");
 	for(i=0; i<buttons.length; i++){
 		buttons[i].disabled = true;
 
@@ -134,17 +142,33 @@ function gameOver(combo, playerWhoWon){
 	}
 	//Give the user a button to click on, to reset the board. When they click on it
 	//Call resetGame()
+	document.getElementById('reset').style.display = "block";
 }
 
 function resetGame(){
 	// Clear Player Arrays
+	playerOneMarkings = [];
+    playerTwoMarkings = [];
 	// Clear innerHTML of squares
+	for(i=0; i<squares.length; i++){
+		squares[i].innerHTML = "";
+		squares[i].classList.remove('winner');
+	}
 	// Update wins counter for the winning playerOneMarkings
+    //???????
+
 	// Undisable the buttons
+	var buttons = document.getElementsByClassName("square");
+	for(i=0; i<buttons.length; i++){
+		buttons[i].disabled = false;
+
+		buttons[i].style.pointerEvents = 'auto';
+	}
+
+	//Set default mode and show player choice
+	playMode = 0;
+	document.getElementById('player-choice').style.display = "block";
+	document.getElementById('reset').style.display = "none";
+	gameHeader.innerHTML = "Please select 1 or 2 Player mode";
 }
 
-var squareWidth = document.getElementById('a1').clientWidth;
-var squares = document.getElementsByClassName('square');
-for(i=0; i<squares.length; i++){
-	squares[i].style.height = squareWidth + 'px';
-}
