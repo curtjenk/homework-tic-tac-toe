@@ -21,7 +21,7 @@ var winners =
 var playerOneMarkings = [];
 var playerTwoMarkings = [];
 var whosTurn = 1;
-var gameHeader = document.getElementById('game-header')
+var gameHeader = document.getElementById('game-header');
 	//------------ set the square height
 var squareWidth = document.getElementById('a1').clientWidth;
 var squares = document.getElementsByClassName('square');
@@ -33,6 +33,7 @@ function setPlayMode(mode) {
 	playMode = mode;
 	document.getElementById('player-choice').style.display = "none";
 	gameHeader.innerHTML = "It is Player 1's turn";
+	whosTurn = 1;
 }
 
 function addSymbol(element) {
@@ -40,7 +41,7 @@ function addSymbol(element) {
 		gameHeader.innerHTML = "Please select 1 or 2 Player mode";
 		return;
 	}
-	if (element.innerHTML == '') {
+	if (element.innerHTML === '') {
 		//Put a symbol in... X or O?
 		if (whosTurn == 1) {
 			//It's X's turn. So, we have an empty square, and it's X's turn. Put an X in.
@@ -130,7 +131,7 @@ function checkWin() {
 function gameOver(combo, playerWhoWon) {
 	for (i = 0; i < combo.length; i++) {
 		// console.log(combo[i]);
-		document.getElementById(combo[i]).classList.add('winner');
+		//document.getElementById(combo[i]).classList.add('winner');
 	}
 	gameHeader.innerHTML = 'Player ' + playerWhoWon + ' , won the game!';
 
@@ -153,9 +154,13 @@ function resetGame() {
 	playerOneMarkings = [];
 	playerTwoMarkings = [];
 	// Clear innerHTML of squares
+	squares = document.getElementsByClassName('square');
 	for (i = 0; i < squares.length; i++) {
 		squares[i].innerHTML = "";
 		squares[i].classList.remove('winner');
+		squares[i].classList.add('empty');
+		squares[i].classList.remove('p1');
+		squares[i].classList.remove('p2');
 	}
 	// Update wins counter for the winning playerOneMarkings
 	//???????
@@ -169,6 +174,7 @@ function resetGame() {
 
 	//Set default mode and show player choice
 	playMode = 0;
+	whosTurn = 0;
 	document.getElementById('player-choice').style.display = "block";
 	document.getElementById('reset').style.display = "none";
 	gameHeader.innerHTML = "Please select 1 or 2 Player mode";

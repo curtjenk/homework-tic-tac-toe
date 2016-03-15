@@ -16,7 +16,7 @@ body {
 	color: #8000FF;
 	border-radius: 30px;
 	border: none;
-	margin: 0px 10px;
+	margin: 0px 40px;
 	background-color: #ddd;
 }
 #reset {
@@ -84,9 +84,9 @@ body {
 	background-color: #0000ff;
 }
 
-.winner{
+/*.winner{
 	background: green;
-}
+}*/
 
 /* ---------- styles for the red line through the winning squares ----*/
 
